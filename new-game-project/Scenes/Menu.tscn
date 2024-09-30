@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccllu67behpdg"]
+
+[ext_resource type="Texture2D" uid="uid://djln70pnycuvx" path="res://ExternalDownloads/attachment_121995211.jpeg" id="1_nrmk6"]
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_qtppo"]
+[ext_resource type="Texture2D" uid="uid://bh6ye820wg3gh" path="res://ExternalDownloads/play.png" id="2_cou14"]
+[ext_resource type="AudioStream" uid="uid://dq1dvoyq3b1bp" path="res://ExternalDownloads/Prison Break OST 01 Main Titles.mp3" id="4_gdhwr"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1479.0
+offset_bottom = 771.0
+script = ExtResource("1_qtppo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 1150.0
+offset_bottom = 655.0
+texture = ExtResource("1_nrmk6")
+expand_mode = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 298.0
+offset_right = 287.0
+offset_bottom = 392.0
+icon = ExtResource("2_cou14")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gdhwr")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

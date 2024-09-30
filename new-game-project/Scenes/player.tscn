@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3a5v8qxuvsnc"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_m2omx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rshpa"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tp355"]
+material = SubResource("StandardMaterial3D_rshpa")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_prepo"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_m2omx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_tp355")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_prepo")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]

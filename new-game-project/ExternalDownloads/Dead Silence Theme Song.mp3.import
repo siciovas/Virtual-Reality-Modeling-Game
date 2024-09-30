@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://di04ancwxlu1d"
+path="res://.godot/imported/Dead Silence Theme Song.mp3-aa9ded35ecc2720470b7ffe706741789.mp3str"
+
+[deps]
+
+source_file="res://ExternalDownloads/Dead Silence Theme Song.mp3"
+dest_files=["res://.godot/imported/Dead Silence Theme Song.mp3-aa9ded35ecc2720470b7ffe706741789.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

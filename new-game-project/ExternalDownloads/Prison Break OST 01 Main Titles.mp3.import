@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dq1dvoyq3b1bp"
+path="res://.godot/imported/Prison Break OST 01 Main Titles.mp3-7688634255c7a22bd8e5172eb4645de1.mp3str"
+
+[deps]
+
+source_file="res://ExternalDownloads/Prison Break OST 01 Main Titles.mp3"
+dest_files=["res://.godot/imported/Prison Break OST 01 Main Titles.mp3-7688634255c7a22bd8e5172eb4645de1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
