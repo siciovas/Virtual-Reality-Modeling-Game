@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c16ype84f3eqx"]
+
+[ext_resource type="Script" path="res://Scripts/gameover.gd" id="1_eyhcm"]
+[ext_resource type="Texture2D" uid="uid://qny86q4njnpt" path="res://ExternalDownloads/ab67616d0000b2734101eb394f1596d84f89cc4b.jpeg" id="1_wal3d"]
+[ext_resource type="AudioStream" uid="uid://dq1dvoyq3b1bp" path="res://ExternalDownloads/Prison Break OST 01 Main Titles.mp3" id="3_a27cd"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eyhcm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 640.0
+texture = ExtResource("1_wal3d")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 46.0
+offset_right = 649.0
+offset_bottom = 105.0
+text = "START AGAIN"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_a27cd")

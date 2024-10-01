@@ -28,6 +28,7 @@ offset_top = 298.0
 offset_right = 287.0
 offset_bottom = 392.0
 icon = ExtResource("2_cou14")
+flat = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_gdhwr")

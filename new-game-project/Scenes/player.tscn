@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3a5v8qxuvsnc"]
+[gd_scene load_steps=11 format=3 uid="uid://d3a5v8qxuvsnc"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_m2omx"]
+[ext_resource type="Texture2D" uid="uid://ck73l8honlus4" path="res://ExternalDownloads/crosshair.png" id="2_em4e8"]
+[ext_resource type="Texture2D" uid="uid://dx16qy8or7i4s" path="res://ExternalDownloads/gun.png" id="3_24dpo"]
+[ext_resource type="AudioStream" uid="uid://d2dqjofddpkcu" path="res://ExternalDownloads/Gunshot Sound Effect-[AudioTrimmer.com].mp3" id="4_3gdu0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rshpa"]
 
@@ -8,6 +11,26 @@
 material = SubResource("StandardMaterial3D_rshpa")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_prepo"]
+
+[sub_resource type="Gradient" id="Gradient_im2pv"]
+offsets = PackedFloat32Array(0.4, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fx3ph"]
+gradient = SubResource("Gradient_im2pv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i8jlh"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_min = 167.0
+initial_velocity_max = 406.44
+gravity = Vector3(0, 0, 0)
+scale_max = 14.0
+color = Color(0.607325, 0.37639, 0, 1)
+color_ramp = SubResource("GradientTexture1D_fx3ph")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_m2omx")
@@ -23,3 +46,55 @@ shape = SubResource("CapsuleShape3D_prepo")
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="crosshair" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 392.0
+offset_top = 196.0
+offset_right = 737.0
+offset_bottom = 411.0
+texture = ExtResource("2_em4e8")
+
+[node name="gun" type="TextureRect" parent="CanvasLayer/Control"]
+offset_left = 587.0
+offset_top = 387.0
+offset_right = 1153.0
+offset_bottom = 647.0
+texture = ExtResource("3_24dpo")
+
+[node name="gunfire" type="GPUParticles2D" parent="CanvasLayer/Control"]
+position = Vector2(725, 429)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_i8jlh")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="gunfire2" type="GPUParticles2D" parent="CanvasLayer/Control"]
+position = Vector2(739, 384)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_i8jlh")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 365.0
+offset_top = 7.0
+offset_right = 694.0
+offset_bottom = 41.0
+horizontal_alignment = 1
+
+[node name="gunshotSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3gdu0")
