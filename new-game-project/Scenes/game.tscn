@@ -1,7 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://brddcllacyd7f"]
+[gd_scene load_steps=26 format=3 uid="uid://brddcllacyd7f"]
 
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_at00e"]
 [ext_resource type="AudioStream" uid="uid://di04ancwxlu1d" path="res://ExternalDownloads/Dead Silence Theme Song.mp3" id="1_sgcs1"]
 [ext_resource type="PackedScene" uid="uid://d3a5v8qxuvsnc" path="res://Scenes/player.tscn" id="2_scaqd"]
+[ext_resource type="PackedScene" uid="uid://bgnp57s6s66gq" path="res://Scenes/zombie.tscn" id="3_liiit"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3tqj"]
 albedo_color = Color(0.368627, 0.305882, 0.305882, 1)
@@ -68,6 +70,7 @@ data = PackedVector3Array(-5, 0.5, 2.5, 5, 0.5, 2.5, -5, -0.5, 2.5, 5, 0.5, 2.5,
 albedo_color = Color(1, 0.556863, 1, 1)
 
 [node name="Game" type="Node3D"]
+script = ExtResource("1_at00e")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_t3tqj")
@@ -236,3 +239,15 @@ use_collision = true
 polygon = PackedVector2Array(0, 0, 0, 0, 0, 3, 3, 0)
 depth = 6.05
 material = SubResource("StandardMaterial3D_4d7vd")
+
+[node name="Zombie" parent="." instance=ExtResource("3_liiit")]
+transform = Transform3D(0.999699, 0.00302181, 0.0243327, 1.22325e-09, 0.992377, -0.123237, -0.0245196, 0.1232, 0.992079, -2.49511, 1.42916, -14.4926)
+
+[node name="Zombie2" parent="." instance=ExtResource("3_liiit")]
+transform = Transform3D(0.999699, 0.00302181, 0.0243327, 1.22325e-09, 0.992377, -0.123237, -0.0245196, 0.1232, 0.992079, -12.1272, 1.42916, -22.1117)
+
+[node name="Zombie3" parent="." instance=ExtResource("3_liiit")]
+transform = Transform3D(0.999699, 0.00302181, 0.0243327, 1.22325e-09, 0.992377, -0.123237, -0.0245196, 0.1232, 0.992079, -17.0488, 1.42916, -14.4926)
+
+[node name="Zombie4" parent="." instance=ExtResource("3_liiit")]
+transform = Transform3D(0.999699, 0.00302181, 0.0243327, 1.22325e-09, 0.992377, -0.123237, -0.0245196, 0.1232, 0.992079, 3.00947, 4.90204, -10.8973)

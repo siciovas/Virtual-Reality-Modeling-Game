@@ -6,7 +6,7 @@ var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 5.0
 var gunfire = 1
 
 @onready var gunshotSound = $gunshotSound
@@ -72,3 +72,7 @@ func shoot():
 		else:
 			$CanvasLayer/Control/gunfire2.emitting = true
 			gunfire = 1
+
+func kill():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().change_scene_to_file("res://Scenes/gameover.tscn")
