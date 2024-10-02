@@ -104,3 +104,4 @@ horizontal_alignment = 1
 
 [node name="gunshotSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3gdu0")
+volume_db = -23.459

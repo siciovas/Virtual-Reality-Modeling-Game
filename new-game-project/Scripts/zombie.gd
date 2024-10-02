@@ -45,6 +45,7 @@ func _physics_process(delta):
 func kill():
 	dead = true
 	$CollisionShape3D.disabled = true
+	$DeadSound.play()
 	anim_player.play("die")
 
 func set_player(p):
