@@ -49,7 +49,8 @@ shape = SubResource("CapsuleShape3D_prepo")
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
-transform = Transform3D(-0.997103, 0, 0.0760577, 0, 1, 0, -0.0760577, 0, -0.997103, 0, 0, 0.0586755)
+transform = Transform3D(-0.999998, 6.82717e-09, -0.00204205, -6.64917e-09, -1, -8.71696e-08, -0.00204207, -8.71558e-08, 0.999998, 0, 0, 0.372435)
+target_position = Vector3(0, 0, -100)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

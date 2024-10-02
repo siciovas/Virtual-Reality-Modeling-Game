@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgnp57s6s66gq"]
+[gd_scene load_steps=9 format=3 uid="uid://bgnp57s6s66gq"]
 
 [ext_resource type="Texture2D" uid="uid://crpa2yxurp10v" path="res://ExternalDownloads/zombie.png" id="1_fn3ss"]
 [ext_resource type="Script" path="res://Scripts/zombie.gd" id="1_w1qaf"]
+[ext_resource type="AudioStream" uid="uid://by43afbjk6qqs" path="res://ExternalDownloads/sonido de zombies tenebroso efecto de sonido (scary zombie sounds sound effect) (mp3cut.net).mp3" id="3_2rrde"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48t1o"]
-radius = 0.546043
+radius = 0.674275
 height = 2.41872
 
-[sub_resource type="Animation" id="Animation_tr88k"]
+[sub_resource type="Animation" id="Animation_i52mk"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -19,11 +20,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_801ng"]
-resource_name = "zombie"
+[sub_resource type="Animation" id="Animation_svpo0"]
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,42 +32,63 @@ tracks/0/path = NodePath("Zombie:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [1]
+"values": [0, 1, 2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a0faj"]
+[sub_resource type="Animation" id="Animation_ule5v"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zombie:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eql7t"]
 _data = {
-"RESET": SubResource("Animation_tr88k"),
-"zombie": SubResource("Animation_801ng")
+"RESET": SubResource("Animation_i52mk"),
+"die": SubResource("Animation_ule5v"),
+"walk": SubResource("Animation_svpo0")
 }
 
 [node name="Zombie" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, -0.0113893, 0.000346899)
 script = ExtResource("1_w1qaf")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000619292, 1.53249, 0.570287)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0412241, 0.934604, 0)
 shape = SubResource("CapsuleShape3D_48t1o")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_a0faj")
-}
-
-[node name="Zombie" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.174926, 1.10434, -0.00536299)
-texture = ExtResource("1_fn3ss")
-hframes = 5
-vframes = 2
-frame = 1
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
 one_shot = true
 autostart = true
+
+[node name="DeadSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_2rrde")
+unit_size = 2.0
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -1.12193, 1.04222, 0.538079)
+target_position = Vector3(0, 2, 0)
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eql7t")
+}
+
+[node name="Zombie" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2981, 0)
+texture = ExtResource("1_fn3ss")
+hframes = 5
+vframes = 2

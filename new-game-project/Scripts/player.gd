@@ -8,12 +8,14 @@ var mouse_relative_y = 0
 const SPEED = 5.0
 const JUMP_VELOCITY = 5.0
 var gunfire = 1
+var killed = 0
 
 @onready var gunshotSound = $gunshotSound
 @onready var gun = $CanvasLayer/Control/gun as TextureRect
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var original_position: Vector2
 var elapsed_time: float = 0.0  # Timer variable
+@onready var raycast = $Head/Camera3D/RayCast3D  # Long RayCast3D attached to the Camera3D node
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -60,18 +62,30 @@ func _input(event):
 
 func shoot():
 	gunshotSound.play()
-
+	# Handle gun recoil
 	if gun:
 		gun.position.y -= 10  # Move the gun up for recoil effect
 		await get_tree().create_timer(0.1).timeout  # Wait for a short moment
 		gun.position = original_position  # Return to the original position
 
+		# Emit gunfire effect
 		if gunfire == 1:
 			$CanvasLayer/Control/gunfire.emitting = true
 			gunfire = 2
 		else:
 			$CanvasLayer/Control/gunfire2.emitting = true
 			gunfire = 1
+	
+	# Check for collision with the raycast
+	if raycast.is_colliding():
+		var coll = raycast.get_collider()
+		if coll and coll.has_method("kill"):
+			coll.kill()
+			killed += 1
+			if killed == 4:
+				await get_tree().create_timer(1.5).timeout
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+				get_tree().change_scene_to_file("res://Scenes/wongame.tscn")
 
 func kill():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

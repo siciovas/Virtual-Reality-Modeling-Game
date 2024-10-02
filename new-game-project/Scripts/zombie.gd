@@ -14,7 +14,6 @@ var dead = false
 
 func _ready():
 	anim_player.play("walk")
-	add_to_group("zombies")
 	raycast.enabled = true  # Ensure RayCast is enabled
 
 func _physics_process(delta):
